@@ -6,6 +6,7 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 
 @Entity
@@ -31,8 +32,6 @@ public class HourlyStats {
 
     @Column(name = "invalid_count")
     private long invalidCount = 0;
-
-
 
     @ManyToOne
     @JoinColumn(name = "customer", nullable = false)
@@ -74,6 +73,24 @@ public class HourlyStats {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HourlyStats that = (HourlyStats) o;
+        return id == that.id &&
+                requestCount == that.requestCount &&
+                invalidCount == that.invalidCount &&
+                Objects.equals(createDate, that.createDate) &&
+                Objects.equals(timestamp, that.timestamp) &&
+                Objects.equals(customer, that.customer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createDate, timestamp, requestCount, invalidCount, customer);
     }
 
     @Override

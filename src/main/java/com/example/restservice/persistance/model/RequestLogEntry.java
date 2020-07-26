@@ -4,6 +4,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @author Andris Magins
@@ -45,5 +46,31 @@ public class RequestLogEntry {
 
     public void setValid(boolean valid) {
         isValid = valid;
+    }
+
+    @Override
+    public String toString() {
+        return "RequestLogEntry{" +
+                "id=" + id +
+                ", createDate=" + createDate +
+                ", customerId=" + customerId +
+                ", isValid=" + isValid +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RequestLogEntry that = (RequestLogEntry) o;
+        return id == that.id &&
+                customerId == that.customerId &&
+                isValid == that.isValid &&
+                Objects.equals(createDate, that.createDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createDate, customerId, isValid);
     }
 }

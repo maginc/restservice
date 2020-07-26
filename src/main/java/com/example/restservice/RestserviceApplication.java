@@ -22,37 +22,36 @@ public class RestserviceApplication {
         SpringApplication.run(RestserviceApplication.class, args);
     }
 
-//    @Bean
-//    public CommandLineRunner demoData(CustomerRepository customerRepository,
-//                                      IpBlacklistRepository ipBlacklistRepository,
-//                                      UaBlacklistRepository uaBlacklistRepository){
-//
-//        return args -> {
-//            List<UaBlacklist> userAgentList = Arrays.asList(
-//                    new UaBlacklist("A6-Indexer"),
-//                    new UaBlacklist("Googlebot-News"),
-//                    new UaBlacklist("Googlebot")
-//            );
-//            uaBlacklistRepository.saveAll(userAgentList);
-//
-//            List<IpBlacklist> ipBlacklistList = Arrays.asList(
-//                    new IpBlacklist(0),
-//                    new IpBlacklist(2130706433),
-//                    new IpBlacklist(4294967295L),
-//                    new IpBlacklist(3232236149L)
-//            );
-//            ipBlacklistRepository.saveAll(ipBlacklistList);
-//
-//           List<Customer> customerList = Arrays.asList(
-//                   new Customer("Big News Media Corp",1),
-//                   new Customer("Online Mega Store", 1),
-//                   new Customer("Nachoroo Delivery",0),
-//                   new Customer("Euro Telecom Group", 1)
-//                   );
-//
-//            customerRepository.saveAll(customerList);
-//
-//        };
-//    }
+    @Bean
+    public CommandLineRunner demoData(CustomerRepository customerRepository,
+                                      IpBlacklistRepository ipBlacklistRepository,
+                                      UaBlacklistRepository uaBlacklistRepository){
+
+        return args -> {
+            List<UaBlacklist> userAgentList = Arrays.asList(
+                    new UaBlacklist("A6-Indexer"),
+                    new UaBlacklist("Googlebot-News"),
+                    new UaBlacklist("Googlebot")
+            );
+            uaBlacklistRepository.saveAll(userAgentList);
+
+            List<IpBlacklist> ipBlacklistList = Arrays.asList(
+                    new IpBlacklist(0),
+                    new IpBlacklist(2130706433),
+                    new IpBlacklist(4294967295L)
+            );
+            ipBlacklistRepository.saveAll(ipBlacklistList);
+
+           List<Customer> customerList = Arrays.asList(
+                   new Customer("Big News Media Corp",1),
+                   new Customer("Online Mega Store", 1),
+                   new Customer("Nachoroo Delivery",0),
+                   new Customer("Euro Telecom Group", 1)
+                   );
+
+            customerRepository.saveAll(customerList);
+
+        };
+    }
 
 }

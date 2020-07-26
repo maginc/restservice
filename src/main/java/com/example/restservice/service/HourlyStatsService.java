@@ -25,7 +25,7 @@ public class HourlyStatsService {
     final RequestLogEntryRepository requestLogEntryRepository;
     final CustomerRepository customerRepository;
 
-    public static final long HOURLY_STATS_AGGREGATION_INTERVAL = 20*1000;
+    public static final long HOURLY_STATS_AGGREGATION_INTERVAL = 30*1000;
 
     public HourlyStatsService(HourlyStatsRepository hourlyStatsRepository,
                               RequestLogEntryRepository requestLogEntryRepository,
@@ -37,8 +37,6 @@ public class HourlyStatsService {
     }
     @Scheduled(fixedRate=HOURLY_STATS_AGGREGATION_INTERVAL)
     public void scheduleFixedRateTask() {
-        System.out.println(
-                "Fixed rate task - " + System.currentTimeMillis() / 1000);
 
         /*
                 Getting all customers form db
@@ -48,7 +46,7 @@ public class HourlyStatsService {
         /*
                 Fetching list of all log entries per customer
          */
-        try {
+
             Map<Integer, List<RequestLogEntry>> map = new HashMap<>();
             customerList.forEach(customer -> {
                 List<RequestLogEntry> requestLogEntry = requestLogEntryRepository.findAllByCustomerId(customer.getId());
@@ -80,11 +78,6 @@ public class HourlyStatsService {
                     hourlyStatsRepository.save(hourlyStats);
                 }
             });
-
-        }catch (Exception e){
-            System.out.println("Exception accrued, most likely request log list is empty");
-        }
-
 
             /*
                     Clear table

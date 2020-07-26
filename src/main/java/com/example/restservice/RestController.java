@@ -99,11 +99,6 @@ public class RestController {
         return new ResponseEntity<>(statsResponse, headers, status);
     }
 
-    @GetMapping(value = "/toster")
-    public void toster() {
-        hourlyStatsService.scheduleFixedRateTask();
-    }
-
     void stubFunctionForProcessing(SampleRequest sampleRequest) {
     }
 

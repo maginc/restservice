@@ -69,5 +69,29 @@ public class Customer {
         this.hourlyStats = hourlyStats;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                ", hourlyStats=" + hourlyStats +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return id == customer.id &&
+                active == customer.active &&
+                name.equals(customer.name) &&
+                Objects.equals(hourlyStats, customer.hourlyStats);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, active, hourlyStats);
+    }
 }
