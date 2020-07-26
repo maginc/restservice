@@ -25,7 +25,7 @@ public class HourlyStatsService {
     final RequestLogEntryRepository requestLogEntryRepository;
     final CustomerRepository customerRepository;
 
-    public static final long HOURLY_STATS_AGGREGATION_INTERVAL = 30*1000;
+    public static final long HOURLY_STATS_AGGREGATION_INTERVAL = 60*60*1000;
 
     public HourlyStatsService(HourlyStatsRepository hourlyStatsRepository,
                               RequestLogEntryRepository requestLogEntryRepository,
