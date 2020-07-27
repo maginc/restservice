@@ -22,6 +22,7 @@ Customer id should be same in request path and in json body, otherwise requests 
 ### ```GET /api/v1/stats/:customerId/:date```
 Get statistics for particular customer per this day. <br>
 Date string should be in format: "yyyy-MM-dd" <br>
-
 Return json body with customer info, hourly stats for this customer on particular day <br>
+### !!! In order to get data from this endpoint you have to wait 1 hour, or change data aggregation interval in HourlyStatsService.java to shorter period of time
+
 
